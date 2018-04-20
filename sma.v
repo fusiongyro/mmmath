@@ -20,6 +20,18 @@ Axiom zero : exists zero : D, forall a : D, a + zero = a.
 
 Axiom unity : exists one : D, forall a : D, a * one = a.
 
+Theorem abc : forall a : D, forall b : D, forall c : D,
+        a + b + c = c + b + a.
+Proof.
+  intros.
+  rewrite <- associative_p.
+  replace (b + c) with (c + b).
+  rewrite commutative_p.
+  auto.
+  rewrite commutative_p.
+  auto.
+Qed.  
+
 (* Axiom additive_inv : forall a : D, exists a' : D, a + a' = zero. *)
 
 (* Axiom cancellation : forall a : D, forall b : D, forall c : D, c != zero => c*a = c*b => a = b. *)
